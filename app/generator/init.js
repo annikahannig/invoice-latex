@@ -10,4 +10,10 @@
  * (c) 2015 Matthias Hannig
  */
 
+var invoiceInit = function(argv) {
+  console.error('Invoice Init: STUB');
+};
+
+// == Export
+module.exports = invoiceInit;
 
