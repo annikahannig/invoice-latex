@@ -1,0 +1,30 @@
+{
+  "name": "latex-json-invoice",
+  "version": "1.0.0",
+  "description": "Invoice generator from json input",
+  "main": "app/invoice-generator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhannig/latex-json-invoice"
+  },
+  "keywords": [
+    "json",
+    "latex",
+    "invoice",
+    "pdf"
+  ],
+  "author": "Matthias Hannig",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhannig/latex-json-invoice/issues"
+  },
+  "homepage": "https://github.com/mhannig/latex-json-invoice",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "ejs": "^2.3.1",
+    "yargs": "^3.7.1"
+  }
+}
