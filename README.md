@@ -6,5 +6,6 @@ compiler.
 
 Use `invoice init` to create new invoice.
 
+## TODO: This is work in progress.
 
 
