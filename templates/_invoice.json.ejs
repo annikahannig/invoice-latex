@@ -5,29 +5,28 @@
   "from": {
     "name": "{{from.name}}",
     "address": [
-      <%= from.address.split("\n").map(function(line){
-        return '"'+line+'"';
-      }).join(",\n"); %>
+<%- from.address.split("\n").map(function(line){
+return '"'+line+'"';
+}).join(",\n"); %>
     ]
   },
 
   "to": {
     "name": "{{from.name}}",
     "address": [
-      <%= to.address.split("\n").map(function(line){
-        return '"'+line+'"';
-      }).join(",\n"); %>
+<%- to.address.split("\n").map(function(line){
+  return '"'+line+'"';
+}).join(",\n"); %>
     ]
   },
 
   "items": [
     {
       "type": "Entwicklung",
-      "description": "JavaScript-Dateien abgenockt und Zeilenumwälzung verbessert.",
+      "description": "Beschreibung",
       "qty": 2.5,
-      "rate": 85.0
+      "rate": 150.0
     }
   ]
-
 }
 
