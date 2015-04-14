@@ -14,10 +14,10 @@ var fs   = require('fs');
 var argv = require('yargs').argv;
 
 // Load modules
-var invoice_init     = require('./generator/init');
-var invoice_compile  = require('./generator/compile');
-var invoice_config   = require('./generator/config');
-var invoice_usage    = require('./generator/usage');
+var invoice_init     = require('./cli/init');
+var invoice_compile  = require('./cli/compile');
+var invoice_config   = require('./cli/config');
+var invoice_usage    = require('./cli/usage');
 
 // Switch action based on arguments
 var actions = {
