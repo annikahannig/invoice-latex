@@ -7,5 +7,5 @@
 #
 
 GENERATOR="$(dirname $0)/../app/invoice-generator.js"
-node $GENERATOR $@
+/usr/bin/node $GENERATOR $@
 
