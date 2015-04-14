@@ -44,7 +44,6 @@ var invoiceInit = function(argv) {
   console.log(logSymbols.success, 'compiled invoice json template');
 
   // Check if 
-
   
 };
 
