@@ -12,16 +12,30 @@
  * (c) 2015 Matthias Hannig
  */
 
-var sym = require('log-symbols');
-
+var sym  = require('log-symbols');
+var fs   = require('fs');
+var path = require('path');
 
 // == Modules
-var loadInvoice = require('../invoice/load-invoice');
+var loadInvoice       = require('../invoice/load-invoice');
+var generateTexSource = require('../invoice/generate-tex-source');
 
 // == Compile invoice
 var cliInvoiceCompile = function(argv) {  
   console.log( sym.info + ' Compiling invoice.');
+
+  var tmpFile = 'invoice-' +
+    (Math.random()*10e16).toString(36) +
+    '.tex';
+
+  // copy letter paper
+  fs.createReadStream(path.join(
+    __dirname, '../../templates/', 'letterpaper.pdf'
+    ))
+    .pipe(fs.createWriteStream('/tmp/letterpaper.pdf'));
+
   loadInvoice('invoice.yml')
+    .then(generateTexSource('/tmp/' + tmpFile))
     .then(  
       function(res) {
         console.log(res);

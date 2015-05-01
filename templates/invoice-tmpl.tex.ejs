@@ -27,7 +27,7 @@
 \vfill
 \centering
 \includegraphics[width=\paperwidth,height=\paperheight,
-keepaspectratio]{./briefkopf.pdf}%
+keepaspectratio]{./letterpaper.pdf}%
 \vfill
 }}}
 
@@ -37,13 +37,13 @@ keepaspectratio]{./briefkopf.pdf}%
 %
 % Rechnungs config
 %
-\setkomavar{date}{\today}
+\setkomavar{date}{<%= invoice.date %>}
 \setkomavar{invoice}{<%= invoice.nr %>}
 \setkomavar{title}{Rechnung}
 
 
 \setkomavar{fromname}{<%= invoice.from[0] %>} % your name
-\setkomavar{fromaddress}{<%= invoice.from.splice(1).join('\\') %>}
+\setkomavar{fromaddress}{<%= invoice.from.splice(1).join('\\\\') %>}
 
 \setkomavar{signature}{<%= invoice.from[0] %>} 
 
@@ -64,12 +64,11 @@ keepaspectratio]{./briefkopf.pdf}%
 
 \begin{letter}{%
 \textbf{<%= invoice.to[0] %>}\\
-<%= invoice.to.splice(1).join('\\') %>\\
+<%= invoice.to.splice(1).join('\\\\') %>\\
 }
 
-<%= invoice.body %>
+<%= invoiceBody %>
 
 \end{letter}
 \end{document}
-
 
