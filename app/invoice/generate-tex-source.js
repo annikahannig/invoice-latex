@@ -14,35 +14,62 @@ var path    = require('path');
 
 var sym     = require('log-symbols');
 
+
+// == Helper
+var loadAndCompileTemplate = function(file) {
+  // Load template
+  var template = fs.readFileSync(
+    path.join(
+      __dirname,
+      '../../templates', 
+      file
+    ),
+    { encoding: 'utf8' }  
+  );
+
+  return ejs.compile(template);
+};
+
+
 var genreateTexSource = function(dstFile) {
+  dstFile += '.tex';
+
   return function(invoice) {
     var promise = new Promise(function(resolve, reject) {
 
-      // Load template
-      var invoiceTexTemplate = fs.readFileSync(
-        path.join(
-          __dirname,
-          '../../templates', 
-          'invoice-tmpl.tex.ejs'         
-        ),
-        { encoding: 'utf8' }  
+      // Load templates 
+      // -> Invoice
+      var invoiceTmpl = loadAndCompileTemplate(
+        'invoice-tmpl.tex.ejs'
+      );
+      // -> Account
+      var accountTmpl = loadAndCompileTemplate(
+        'invoice-tmpl.account.tex.ejs'
+      );
+      // -> Items
+      var itemsTmpl = loadAndCompileTemplate(
+        'invoice-tmpl.items.tex.ejs'
       );
 
-      // Load subtemplates
-      // -> Account
-      //
-      // -> Items
+      // Build invoice body: Replace Subtemplates
+      var content = {
+        '[[ACCOUNT]]': accountTmpl({invoice: invoice}),
+        '[[ITEMS]]':   itemsTmpl({invoice:   invoice})
+      };
+      var invoiceBody = invoice.text.replace(
+        /\[\[(.*?)\]\]/g,  
+        function(match) {
+          return content[match];    
+        }
+      );
 
-      // Compile template and render to file
-      var invoiceTmpl = ejs.compile(invoiceTexTemplate);
-      // var accountTmpl = ejs.compile(accountTexTemplate);
-      // var itemsTmpl   = ejs.compile(itemsTexTemplate);
-
+      // Render invoice 
       var result = invoiceTmpl({
         invoice: invoice,
-        invoiceBody: 'Mooooo'
+        invoiceBody: invoiceBody
       });
     
+      // Write result to file
       fs.writeFile(
         dstFile, result, { encoding: 'utf8' }, function(err) {
           if(err) {

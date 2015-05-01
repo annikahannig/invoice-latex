@@ -19,14 +19,15 @@ var path = require('path');
 // == Modules
 var loadInvoice       = require('../invoice/load-invoice');
 var generateTexSource = require('../invoice/generate-tex-source');
+var cleanup           = require('../invoice/cleanup');
 
 // == Compile invoice
 var cliInvoiceCompile = function(argv) {  
   console.log( sym.info + ' Compiling invoice.');
 
+  // Invoice TMP Prefix
   var tmpFile = 'invoice-' +
-    (Math.random()*10e16).toString(36) +
-    '.tex';
+    (Math.random()*10e16).toString(36);
 
   // copy letter paper
   fs.createReadStream(path.join(
@@ -36,6 +37,7 @@ var cliInvoiceCompile = function(argv) {
 
   loadInvoice('invoice.yml')
     .then(generateTexSource('/tmp/' + tmpFile))
+    .then(cleanup('/tmp/'+tmpFile))
     .then(  
       function(res) {
         console.log(res);
