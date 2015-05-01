@@ -1,3 +1,10 @@
 
-my account info.
+\vspace*{1.5em}
+ \begin{tabular}{ll}
+   <% for( var k in invoice.account ) {
+        var v = invoice.account[k]; 
+   %> \textbf{<%- k %>} &  <%- v %>\\ 
+   <% } %>
+ \end{tabular}
+\vspace*{1.5em}
 

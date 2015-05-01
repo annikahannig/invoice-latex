@@ -20,6 +20,7 @@
 
 \usepackage{longtable}
 
+\usepackage{tikz}
 
 \newcommand\BackgroundPic{
 \put(0,0){
@@ -58,7 +59,7 @@ keepaspectratio]{./letterpaper.pdf}%
 \pagestyle{plain}
 
 \begin{document}
-\AddToShipoutPicture{\BackgroundPic}
+% \AddToShipoutPicture{\BackgroundPic}
 
 \sffamily
 
@@ -66,8 +67,13 @@ keepaspectratio]{./letterpaper.pdf}%
 \textbf{<%= invoice.to[0] %>}\\
 <%= invoice.to.splice(1).join('\\\\') %>\\
 }
+\begin{tikzpicture}[remember picture, overlay]
+  \node [anchor=north west, minimum width=\paperwidth] (box) at (-2.6cm, 3.0cm) {
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{./letterpaper.pdf}%
+  };
+\end{tikzpicture}
 
-<%= invoiceBody %>
+<%- invoiceBody %>
 
 \end{letter}
 \end{document}

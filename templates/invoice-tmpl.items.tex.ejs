@@ -1,5 +1,48 @@
+<%
+  var total = 0;
+  var lastType = undefined;
+%>
 
-ITEMS ITESM
+\begin{center}
+\begin{longtable}{lp{7.0cm}crr}
+\rowcolor{thead}
+ \raisebox{0.5cm}{}
+ Leistung & Beschreibung & Stunden & Einzlpreis (\euro) & Summe (\euro)\\[0.1cm]
+  <% for( var i in invoice.items ) { 
+    var item = invoice.items[i];
+    total   += item.qty * item.rate;
+  %>
+ \\[-0.2cm]
+  <% if( item.type != lastType ) { %>
+    <%- item.type %> 
+  <% lastType = item.type; } %> &
+  <%- item.description %> &
+  <%= item.qty %> &
+  <%= item.rate %> & <%= item.qty * item.rate %>\\
+ <% } %>
+ <%
+   var strTotal = total.toFixed(2).replace('.',',');
+   var tax      = total * 0.19;
+   var strTax   = tax.toFixed(2).replace('.',',');
+   var sum      = tax + total;
+   var strSum   = sum.toFixed(2).replace('.',',');
+ %>
+ <% if(invoice.taxfree) { %>
+ \\[-0.2cm]
+ \cline{4-5}\\
+ \multicolumn{4}{r}{\textbf{Gesamt:}} & \textbf{<%= strTotal %>} \\ \nopagebreak
 
-ITESM sdf
+ <% } else { %>
+ \\[-0.2cm]
+ \hline\\
+ \multicolumn{4}{r}{Summe (netto):} & <%= strTotal %> \\ \nopagebreak
+ \multicolumn{4}{r}{USt. (19 \%):} & <%= strTax %> \\ \nopagebreak
+
+ \\[-0.2cm]
+ \cline{4-5}\\
+ \multicolumn{4}{r}{\textbf{Gesamt:}} & \textbf{<%= strSum %>} \\ \nopagebreak
+ <% } %>
+
+ \end{longtable}
+\end{center}
 
