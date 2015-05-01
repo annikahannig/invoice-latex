@@ -43,8 +43,11 @@ var cliInvoiceCompile = function(argv) {
     .then(receiveInvoice('/tmp/' + tmpFile))
     .then(cleanup('/tmp/'+tmpFile))
     .then(  
-      function(res) {
-        console.log(res);
+      function(invoice) {
+        console.log(
+          sym.success +
+          ' Invoice: ' + invoice.nr + ' ready.'
+        );
       },
       function(err) {
         console.log("ERROR.");
