@@ -27,8 +27,6 @@ var actions = {
   'help':    invoice_usage
 };
 
-console.log(process.cwd());
-
 var action = argv['_'][0]
 var run = actions[action]||actions['help'];
 

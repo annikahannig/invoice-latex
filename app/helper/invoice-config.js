@@ -21,7 +21,3 @@ InvoiceConfig.prototype.save = function() {
   console.log(this);
 };
 
-var ic = new InvoiceConfig();
-
-ic.save();
-
