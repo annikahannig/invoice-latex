@@ -1,10 +1,13 @@
 {
-  "name": "latex-json-invoice",
+  "name": "invoice-latex",
   "version": "1.0.0",
-  "description": "Invoice generator from json input",
+  "description": "Invoice generator from yml input",
   "main": "app/invoice-generator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "invoice": "bin/invoice"
   },
   "repository": {
     "type": "git",
@@ -21,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/mhannig/latex-json-invoice/issues"
   },
-  "homepage": "https://github.com/mhannig/latex-json-invoice",
+  "homepage": "https://github.com/mhannig/invoice-latex",
   "dependencies": {
     "chalk": "^1.0.0",
     "ejs": "^2.3.1",

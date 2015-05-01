@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env node
 
-# Invoice Wrapper Script
-# ----------------------
-#
-# (c) 2015 Matthias Hannig
-#
 
-GENERATOR="$(dirname $0)/../app/invoice-generator.js"
-/usr/bin/node $GENERATOR $@
+/**
+ * Invoice Wrapper Script
+ * ----------------------
+ *
+ * (c) 2015 Matthias Hannig
+ */
+
+process.title = 'invoice';
+require('../app/invoice-generator');
 
