@@ -1,0 +1,75 @@
+\documentclass[%
+ paper=a4,DIN,%
+ enlargefirstpage=on,%
+ pagenumber=off,%
+ fromalign=right,%
+ firsthead=false%
+]{scrlttr2}
+\usepackage[german]{babel}
+% \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{parskip}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{eso-pic}
+\usepackage{color}
+
+\usepackage{calc}
+
+\usepackage{longtable}
+
+
+\newcommand\BackgroundPic{
+\put(0,0){
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,
+keepaspectratio]{./briefkopf.pdf}%
+\vfill
+}}}
+
+
+\definecolor{thead}{gray}{0.80}
+
+%
+% Rechnungs config
+%
+\setkomavar{date}{\today}
+\setkomavar{invoice}{<%= invoice.nr %>}
+\setkomavar{title}{Rechnung}
+
+
+\setkomavar{fromname}{<%= invoice.from[0] %>} % your name
+\setkomavar{fromaddress}{<%= invoice.from.splice(1).join('\\') %>}
+
+\setkomavar{signature}{<%= invoice.from[0] %>} 
+
+% \KOMAoptions{locfield=wide, refline=narrow}
+
+%\makeatletter
+% \@setplength{refhpos}{2cm}
+% \@setplength{refwidth}{6cm}
+%\makeatother
+
+\firsthead{}
+\pagestyle{plain}
+
+\begin{document}
+\AddToShipoutPicture{\BackgroundPic}
+
+\sffamily
+
+\begin{letter}{%
+\textbf{<%= invoice.to[0] %>}\\
+<%= invoice.to.splice(1).join('\\') %>\\
+}
+
+<%= invoice.body %>
+
+\end{letter}
+\end{document}
+
+
