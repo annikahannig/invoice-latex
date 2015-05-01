@@ -27,10 +27,12 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "ejs": "^2.3.1",
+    "glob": "^5.0.5",
     "inquirer": "^0.8.2",
     "js-yaml": "^3.3.0",
     "log-symbols": "^1.0.2",
     "promise": "^7.0.1",
+    "remove": "^0.1.5",
     "yargs": "^3.7.1"
   }
 }
